@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Table</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Time Table</h1>
+    
+    <div id="formContainer"> <!-- Container for the form -->
+        <form method="post">
+            <label for="subjects">Enter the subjects separated by commas:</label><br>
+            <input type="text" id="subjects" name="subjects"><br>
+            <label for="subject_classrooms">Enter the available classrooms for subjects separated by commas:</label><br>
+            <input type="text" id="subject_classrooms" name="subject_classrooms"><br>
+            <label for="labs">Enter the labs separated by commas:</label><br>
+            <input type="text" id="labs" name="labs"><br>
+            <label for="lab_rooms">Enter the available rooms for labs separated by commas:</label><br>
+            <input type="text" id="lab_rooms" name="lab_rooms"><br><br>
+            <input type="submit" value="Generate Timetable">
+        </form>
+    </div>
+
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    
+    {% if timetable and days %}
+    <div id="timetableContainer"> <!-- Container for the timetable -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Time/Day</th>
+                    <th>9:00 AM to 10:00 AM</th>
+                    <th>10:00 AM to 11:00 AM</th>
+                    <th>11:00 AM to 12:00 PM</th>
+                    <th>12:00 PM to 1:00 PM</th>
+                    <th>1:00 PM to 1:30 PM</th>
+                    <th>1:30 PM to 3:30 PM</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for day in days %}
+                    <tr>
+                        <td>{{ day }}</td>
+                        {% for slot in timetable[day] %}
+                            <td>{{ slot['subject'] }} ({{ slot['classroom'] }})</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</body>
+</html>

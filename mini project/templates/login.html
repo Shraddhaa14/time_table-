@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Include Font Awesome for eye icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Add your button animation CSS here */
+        .login-button {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Styling for eye icon */
+        .eye-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        /* Centering the login box */
+        .login-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form method="post">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username"><br>
+            <label for="password">Password:</label><br>
+            <div style="position:relative">
+                <input type="password" id="password" name="password">
+                <!-- Eye icon for toggling password visibility -->
+                <i class="far fa-eye eye-icon" id="togglePassword"></i>
+            </div>
+            <br><br>
+            <input type="submit" value="Login" class="login-button">
+        </form>
+        
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
+        <script>
+            // JavaScript to toggle password visibility
+            var togglePassword = document.getElementById("togglePassword");
+            togglePassword.addEventListener("click", function() {
+                var passwordInput = document.getElementById("password");
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    togglePassword.classList.remove("far", "fa-eye");
+                    togglePassword.classList.add("fas", "fa-eye-slash");
+                } else {
+                    passwordInput.type = "password";
+                    togglePassword.classList.remove("fas", "fa-eye-slash");
+                    togglePassword.classList.add("far", "fa-eye");
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

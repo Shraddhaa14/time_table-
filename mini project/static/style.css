@@ -1,0 +1,37 @@
+/* Add your CSS styles here */
+body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #050000; /* Adjust text color to be visible on the background */
+}
+
+h1 {
+    text-align: center;
+    color: #050000; /* Adjust text color to be visible on the background */
+}
+
+#formContainer {
+    text-align: center;
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+#timetableContainer {
+    margin-top: 50px; /* Adjust margin as needed */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #070000; /* Adjust text color to be visible on the background */
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #faf9f9;
+}
